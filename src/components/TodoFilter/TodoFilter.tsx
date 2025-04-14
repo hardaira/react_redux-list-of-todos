@@ -2,13 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { searchedQuery, searchedStatus } from '../../features/filter';
-//import { selectVisibleTodos } from '../../selectors/visibleTodosSelector';
 
 export const TodoFilter: React.FC = () => {
   const dispatch = useDispatch();
   const query = useSelector((state: RootState) => state.filter.query);
   const status = useSelector((state: RootState) => state.filter.status);
-  // const visibleTodos = useSelector(selectVisibleTodos);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(searchedQuery(event.target.value));
