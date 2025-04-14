@@ -46,14 +46,14 @@ export const TodoList: React.FC = () => {
           <th></th>
         </tr>
       </thead>
-      
+
       <tbody>
         {todos.map(todo => (
           <tr key={todo.id} data-cy="todo">
             <td className="is-vcentered">{todo.id}</td>
             <td className="is-vcentered">
               {todo.completed && (
-                <span className="icon">
+                <span className="icon" data-cy="iconCompleted">
                   <i className="fas fa-check" />
                 </span>
               )}

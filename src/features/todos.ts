@@ -6,13 +6,12 @@ import { Todo } from '../types/Todo';
 export const fetchTodos = createAsyncThunk('todos/fetchTodos', getTodos);
 
 export interface TodosState {
-  todos: Todo[]; 
+  todos: Todo[];
   status: 'idle' | 'loading' | 'failed';
 }
 
-
 const initialState: TodosState = {
-  todos: [], 
+  todos: [],
   status: 'idle',
 };
 
@@ -23,14 +22,14 @@ export const todosSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchTodos.pending, state => {
-        state.status = 'loading'; 
+        state.status = 'loading';
       })
       .addCase(fetchTodos.fulfilled, (state, action) => {
-        state.status = 'idle'; 
-        state.todos = action.payload; 
+        state.status = 'idle';
+        state.todos = action.payload;
       })
       .addCase(fetchTodos.rejected, state => {
-        state.status = 'failed'; 
+        state.status = 'failed';
       });
   },
 });
