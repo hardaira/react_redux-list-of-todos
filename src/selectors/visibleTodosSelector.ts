@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { RootState } from '../app/store';
 import { Todo } from '../types/Todo';
 
-const selectTodos = (state: RootState) => state.todos;
+const selectTodos = (state: RootState) => state.todos.todos;
 const selectQuery = (state: RootState) => state.filter.query;
 const selectStatus = (state: RootState) => state.filter.status;
 

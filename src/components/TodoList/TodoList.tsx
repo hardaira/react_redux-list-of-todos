@@ -4,11 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import { selectVisibleTodos } from '../../selectors/visibleTodosSelector';
 import { setCurrentTodo } from '../../features/currentTodo';
+import { Loader } from '../Loader';
 
 export const TodoList: React.FC = () => {
   const dispatch = useDispatch();
   const todos = useSelector(selectVisibleTodos);
   const selectedTodo = useSelector((state: RootState) => state.currentTodo);
+  const status = useSelector((state: RootState) => state.todos.status); 
 
   const handleSelect = (todo: typeof selectedTodo) => {
     if (selectedTodo?.id === todo.id) {
@@ -17,6 +19,10 @@ export const TodoList: React.FC = () => {
       dispatch(setCurrentTodo(todo));
     }
   };
+
+  if (status === 'loading') {
+    return <Loader />
+  }
 
   if (todos.length === 0) {
     return (
@@ -40,7 +46,7 @@ export const TodoList: React.FC = () => {
           <th></th>
         </tr>
       </thead>
-
+      
       <tbody>
         {todos.map(todo => (
           <tr key={todo.id} data-cy="todo">

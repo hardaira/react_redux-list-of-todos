@@ -4,12 +4,14 @@ import { RootState } from '../../app/store';
 import { getUser } from '../../api';
 import { setCurrentUser, clearCurrentUser } from '../../features/currentUser';
 import { clearCurrentTodo } from '../../features/currentTodo';
+import { Loader } from '../Loader';
 //import { Loader } from '../Loader';
 
 export const TodoModal: React.FC = () => {
   const dispatch = useDispatch();
   const todo = useSelector((state: RootState) => state.currentTodo);
   const user = useSelector((state: RootState) => state.currentUser);
+  //const status = useSelector((state: RootState) => state.todos.status);
 
   // Guard against undefined `todo`
   useEffect(() => {
@@ -36,10 +38,10 @@ export const TodoModal: React.FC = () => {
       <div className="modal-background" onClick={handleClose} />
 
       {loading ? (
-        <div className="modal-content has-text-centered">
-          {/* <Loader /> */}
-        </div>
+        //<div className="modal-content has-text-centered">
+        <Loader />
       ) : (
+        //</div>
         <div className="modal-card">
           <header className="modal-card-head">
             <div
